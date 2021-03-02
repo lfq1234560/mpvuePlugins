@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style soped>
+<style scoped>
 p{
   height: 50rpx;
   line-height: 50rpx;
