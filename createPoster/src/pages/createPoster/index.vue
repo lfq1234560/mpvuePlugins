@@ -11,11 +11,10 @@
     </div>
     <!-- 生成海报按钮-->
     <button v-on:click="createPoster" class="create-poster-btn">创建海报</button>
-
     <!-- 海报弹窗 -->
     <div class="poster-modal" v-if="isShowPoster">
       <div class="shade">
-        <div class="poster-box"> 
+        <div class="poster-box">
           <img mode="widthFix" :src="posterUrl" alt="">
           <i class="del-poster" @click="delPoster">X</i>
           <button class="save-poster" @click="savePoster">保存</button>
@@ -97,7 +96,7 @@
             quality: 1.0,
             success: (res) => {
               this.posterUrl = res.tempFilePath // 海报图片
-              this.isShowPoster=true;
+              this.isShowPoster = true;
             },
             fail: () => {},
           }, this);
@@ -109,49 +108,49 @@
        * 删除海报
        * @method delPoster
        */
-       delPoster(){
+      delPoster() {
         // 把对应的海报隐藏
-        this.isShowPoster=false;
-       },
-       /**
-        * 保存海报
-        * @method savePoster
-        */
-       savePoster(){
-         wx.authorize({
-           scope: 'scope.writePhotosAlbum',
-           success: (result) => {
-             console.log(this.posterUrl);
-              wx.saveImageToPhotosAlbum({
-                filePath:this.posterUrl,
-                success: (result) => {
-                  wx.showToast({
-                    title: '保存到相册中',
-                    icon: 'success'
-                  })
-                },
-                fail: () => {
-                  wx.showToast({
-                    title: '保存失败',
-                    icon: 'error'
-                  })
-                },
-              });
-           },
-           fail: () => {
-             console.log("保存失败");
-             wx.openSetting({
-               success: (result) => {
-                 
-               },
-               fail: () => {},
-             });
-               
-           },
-         });
-           
-       }
-      
+        this.isShowPoster = false;
+      },
+      /**
+       * 保存海报
+       * @method savePoster
+       */
+      savePoster() {
+        wx.authorize({
+          scope: 'scope.writePhotosAlbum',
+          success: (result) => {
+            console.log(this.posterUrl);
+            wx.saveImageToPhotosAlbum({
+              filePath: this.posterUrl,
+              success: (result) => {
+                wx.showToast({
+                  title: '保存到相册中',
+                  icon: 'success'
+                })
+              },
+              fail: () => {
+                wx.showToast({
+                  title: '保存失败',
+                  icon: 'error'
+                })
+              },
+            });
+          },
+          fail: () => {
+            console.log("保存失败");
+            wx.openSetting({
+              success: (result) => {
+
+              },
+              fail: () => {},
+            });
+
+          },
+        });
+
+      }
+
     }
 
   }
@@ -160,12 +159,13 @@
 
 <style scoped>
   /* 画板内容 */
-  .canvas-con{
+  .canvas-con {
     position: fixed;
     top: 0;
     left: 0;
 
   }
+
   /* 换图片区域 */
   .change-img {
     position: relative;
@@ -201,20 +201,23 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.3);
   }
-  .poster-modal .poster-box{
+
+  .poster-modal .poster-box {
     width: 100%;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    
+
   }
+
   .poster-modal img {
     width: 100%;
     border: 2rpx solid #ccc;
     border-radius: 20rpx;
   }
-  .poster-modal .del-poster{
+
+  .poster-modal .del-poster {
     width: 50rpx;
     height: 50rpx;
     border-radius: 50%;
@@ -227,7 +230,8 @@
     right: 0;
     top: 0;
   }
-  .poster-modal  .save-poster{
+
+  .poster-modal .save-poster {
     padding: 0;
     width: 150rpx;
     height: 50rpx;
@@ -238,4 +242,5 @@
     bottom: 50rpx;
     transform: translateX(-50%);
   }
+
 </style>

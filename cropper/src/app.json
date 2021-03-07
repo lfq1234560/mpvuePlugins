@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/createPoster/main",
     "pages/cropper/main"
   ],
   "window": {
